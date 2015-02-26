@@ -1,0 +1,253 @@
+% This file was created with JabRef 2.8.1.
+% Encoding: Cp1252
+
+@MISC{lazyInit,
+  author = {Microsoft},
+  title = {\textit{Lazy Initialization}},
+  month = {December 11},
+  year = {2010},
+  note = {\\http://msdn.microsoft.com/en-us/library/dd997286(v=vs.110).aspx},
+  owner = {Johan},
+  timestamp = {2014.12.11}
+}
+
+@MISC{xml,
+  author = {{The UK Web Design Company}},
+  title = {XML Advantages \& Disadvantages},
+  note = {\\http://www.theukwebdesigncompany.com/articles/xml-advantages-disadvantages.php},
+  year = {2010},
+  month = {December 17},
+  owner = {Johan},
+  timestamp = {2014.12.17}
+}
+
+@BOOK{Gamedevelopment,
+  title = {Game development and production},
+  publisher = {Worldware Publishing, Inc.},
+  year = {2003},
+  editor = {NaN},
+  author = {Erik Bethke},
+  owner = {Johan},
+  timestamp = {2014.12.09}
+}
+
+@BOOK{Gameprod,
+  title = {The Game Production Handbook},
+  publisher = {Heather Maxwell Chandler},
+  year = {2008},
+  editor = {NaN},
+  author = {Heather Maxwell Chandler},
+  owner = {Johan},
+  timestamp = {2014.12.09}
+}
+
+@MISC{WEbog,
+  author = {Peter Dolog},
+  title = {\texit{Engineering Adaptive Web Applications}},
+  year = {2006},
+  note = {http://people.cs.aau.dk/~dolog/pub/dolog_phd_thesis.pdf},
+  owner = {Johan 'Jizzt�rsker'},
+  timestamp = {2014.12.18}
+}
+
+@MISC{xml-json,
+  author = {Adam DuVander},
+  title = {\textit{1 in 5 APIs say "Bye XML"}},
+  month = {December 18},
+  year = {2014},
+  note = {\\http://www.programmableweb.com/news/1-5-apis-say-bye-xml/2011/05/25},
+  owner = {Morten}
+}
+
+@BOOK{fowler,
+  title = {Patterns of Enterprise Application Architecture},
+  publisher = {Addison-Wesley},
+  year = {2003},
+  author = {Fowler, M.},
+  series = {A Martin Fowler signature book},
+  isbn = {9780321127426},
+  lccn = {2002027743},
+  url = {http://books.google.dk/books?id=FyWZt5DdvFkC}
+}
+
+@BOOK{Gamedesign,
+  title = {Game Design Workshop},
+  publisher = {Morgan Kaufmann Publishers},
+  year = {2008},
+  editor = {NaN},
+  author = {Tracy Fullerton},
+  owner = {Johan},
+  timestamp = {2014.12.09}
+}
+
+@MISC{android-activity,
+  author = {Google},
+  title = {\textit{Activities}},
+  month = {December 16},
+  year = {2014},
+  note = {\\http://developer.android.com/guide/components/activities.html},
+  owner = {Morten}
+}
+
+@MISC{google-maps-api,
+  author = {Google},
+  title = {\textit{Google Developers}},
+  month = {December 18},
+  year = {2014},
+  note = {\\https://developers.google.com/maps/},
+  owner = {Johan}
+}
+
+@MISC{tcpdesc,
+  author = {Information Sciences Institute, University of Southern California},
+  title = {\textit{DARPA Internet Program Protocal Specification}},
+  month = {October 23},
+  year = {2014},
+  note = {http://tools.ietf.org/pdf/rfc791.pdf},
+  owner = {Casper},
+  timestamp = {2014.10.23}
+}
+
+@MISC{udpdesc,
+  author = {J. Postel, ISI},
+  title = {\textit{User Datagram Protocol}},
+  month = {October 23},
+  year = {2014},
+  note = {http://tools.ietf.org/rfc/rfc768.txt},
+  owner = {Casper},
+  timestamp = {2014.10.23}
+}
+
+@MISC{ms-asyn,
+  author = {Microsoft},
+  title = {\textit{Asynchronous Programming with Async and Await}},
+  month = {December 10},
+  year = {2014},
+  note = {\\http://msdn.microsoft.com/en-us/library/hh191443.aspx},
+  owner = {Dan},
+  timestamp = {2014.12.10}
+}
+
+@MISC{ms-syn-asyn,
+  author = {Microsoft},
+  title = {\textit{Synchronous and Asynchronous I/O}},
+  month = {December 8},
+  year = {2014},
+  note = {\\http://msdn.microsoft.com/en-us/library/windows/desktop/aa365683(v=vs.85).aspx},
+  owner = {Dan},
+  timestamp = {2014.12.08}
+}
+
+@MISC{net-timer,
+  author = {Microsoft},
+  title = {\textit{Timer Class}},
+  month = {December 18},
+  year = {2014},
+  note = {http://msdn.microsoft.com/en-us/library/system.timers.timer%28v=vs.110%29.aspx},
+  owner = {Morten}
+}
+
+@MISC{asynh-imlp,
+  author = {Mircosoft},
+  title = {\textit{Asynchronous Server Socket}},
+  month = {October 12},
+  year = {2014},
+  note = {\\http://msdn.microsoft.com/en-us/library/fx6588te},
+  owner = {Dan}
+}
+
+@MISC{response-time,
+  author = {Jakob Nielsen},
+  title = {\textit{Response Times: The 3 Important Limits}},
+  month = {December 18},
+  year = {2014},
+  note = {http://www.nngroup.com/articles/response-times-3-important-limits/},
+  owner = {Morten}
+}
+
+@MISC{adappat,
+  author = {OODesign},
+  title = {\textit{Adapter Pattern}},
+  month = {December 11},
+  year = {2014},
+  note = {\\http://www.oodesign.com/adapter-pattern.html},
+  owner = {Johan},
+  timestamp = {2014.12.11}
+}
+
+@MISC{jelly-bean,
+  author = {Matthew Panzarino},
+  title = {\textit{Google announces Android 4.1 Jelly Bean, with Project Butter
+	visuals and new Search, mid-July}},
+  month = {December 16},
+  year = {2014},
+  note = {\\http://thenextweb.com/google/2012/06/27/google-announces-android-4-1-jelly-bean-with-project-butter-visuals-and-new-search/},
+  owner = {Morten}
+}
+
+@MISC{amir,
+  author = {Amir Salihefendic},
+  title = {\textit{The main issue with non-blocking servers}},
+  month = {December 10},
+  year = {2014},
+  note = {http://amix.dk/blog/post/19581},
+  owner = {Dan},
+  timestamp = {2014.12.10}
+}
+
+@MISC{adv-game,
+  author = {Adventure Game Studios},
+  title = {\textit{Adventure Game Studios}},
+  howpublished = {URL},
+  month = {December 2},
+  year = {2014},
+  note = {\\http://www.adventuregamestudio.co.uk/},
+  owner = {Johan},
+  timestamp = {2014.12.02}
+}
+
+@MISC{tdccoverage,
+  author = {TDC},
+  title = {\textit{Dækning}},
+  month = {October 6},
+  year = {2014},
+  owner = {Morten}
+}
+
+@MISC{facpat,
+  author = {Tutorialspoint},
+  title = {\textit{Facade Patterns}},
+  year = {2014},
+  note = {\\http://www.tutorialspoint.com/design\_pattern/facade\_pattern.htm},
+  owner = {Johan},
+  timestamp = {2014.12.11}
+}
+
+@MISC{framework,
+  author = {Wikipedia},
+  title = {\textit{Software Framework}},
+  month = {November},
+  year = {2014},
+  note = {\\http://en.wikipedia.org/wiki/Software\_framework},
+  owner = {Johan},
+  timestamp = {2014.12.16}
+}
+
+@MISC{wiki-moving-average,
+  author = {Wikipedia},
+  title = {\textit{Moving average}},
+  month = {October 20},
+  year = {2014},
+  note = {http://en.wikipedia.org/wiki/Moving\_average},
+  owner = {Christoffer}
+}
+
+@MISC{wiki-tcp,
+  author = {Wikipedia},
+  title = {\textit{Transmission Control Protocol}},
+  month = {October 12},
+  year = {2014},
+  note = {http://en.wikipedia.org/wiki/Transmission\_Control\_Protocol},
+  owner = {Dan}
+}
+
