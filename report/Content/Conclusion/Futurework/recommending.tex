@@ -1,0 +1,4 @@
+\subsection{Recommender System}
+\label{subsec:recommend}
+
+The recommendation system, based on preferences is described in section \ref{sec:searchbypref}. The system has some obvious flaws that can be worked around, however designing a system like this is all about trade-offs. Our system could however be improved without introducing new trade-offs, as per right now the system gives a flat value based on its position in a sorted list (by the specific value). This creates scenarios where the actual value does not matter as much, imagine a recipe for which a retailer has an absurdly cheap offer compared to all the others. This recipe will be given a value of 100, while the next recipe might be substantially more expensive, will be given a value of 99 or even 100 as well.
