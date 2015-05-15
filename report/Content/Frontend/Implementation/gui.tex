@@ -47,5 +47,6 @@ We recognize that users might not open the application for specific recommendati
 The last \texttt{Fragment} is for management on the application level. From here, the user can log out, which is not done upon closing the application. This enables the user to log in with another account if desired. One will also find preferences affecting both recommendations and recipes, such as the desired radius in which the application looks for prices on ingredients.
 
 \paragraph{RecommendationActivity}
+Upon clicking the button in the \texttt{RecommendFragment} in the \texttt{PagerActivity}, the user is taken to the \texttt{RecommendationActivity}, and more specifically a \texttt{RecommendationFragment}. The number of \texttt{RecommendationFragment} instances given stems from a user-defined setting and will as such vary. The \texttt{Fragment} instances consist of a presentation of a recommendation, along with two buttons. The buttons prompt the user to either choose the recipe (Opens the recipe), or move on to the next recommendation. In the case that the user does not want any of the recommended recipes, a final \texttt{Fragment} called \texttt{RecommendationEndFragment} will be shown, telling the user that there are no more recommendations to be seen. It also displays a button that closes the \texttt{RecommendationActivity}.
 
 \paragraph{RecipeActivity}
