@@ -25,14 +25,26 @@ This particular \texttt{ViewPager} holds five different \texttt{Fragment} instan
 The second element of the \texttt{PagerActivity} is a simple navigation bar, showing which window is currently shown, and letting the user press an icon to change the window. This exists for two reasons. One is to create a shortcut for the user. As worst example, going from the first \texttt{Fragment} to the last would require four swipes, which is now doable with one press. It is also to ensure that the user understands the navigation. Sliding on the screen is easy, but since only one \texttt{Fragment} is visible at a time, users can not know about the feature otherwise.
 
 \paragraph{RecommendFragment}
+The \texttt{RecommendFragment} is the what the user will encounter first upon logging in, or opening the application past the first login. The reason behind showing this exact fragment compared to one of the others, is that the application should be straight to the point. The application should be usable as a simple recipe application, but the recommendation feature is what distinguishies it, and what is hoped people will use it for.
+
+The fragment consists of a single button that, when clicked, will find recommendations for the user. Assuming the user opened the application for ideas on what to make for dinner, it will always be just one click away. Furthermore, a link is provided to change recommendation preferences (\texttt{UserFragment}). This is to encourage that the user actively engages in what to weight in recommendations.
+
+The fragment is placed in the middle of the \texttt{ViewPager}. In case a user did not launch the application to get a recommendation straight away, nothing is more than two swipes away (From \texttt{Fragment} 3 to 5 or 3 to 1).
 
 \paragraph{UserFragment}
+The \texttt{UserFragment} is where personal information is displayed. The user is able to change display name and profile picture. These informations are used when commenting on a recipe.
+To enable profile pictures, the user will have to pick a photo from outside the application. This has been solved by launching a gallery application of the users choice, with the intent to choose a single picture. Upon doing so, the application is closed, and the path of the image returned to the \texttt{UserFragment} for display.
+
+The \texttt{UserFragment} is also where recommendation preferences is changed. This is done with sliders, providing no details for the user. They should simply be arranged by importance. As such the user might see a preference for "Price", figure it is not very important and put the slider to a low value. These preferences will then affect the recommendations received when using the button in the \texttt{RecommendFragment}
 
 \paragraph{FavoriteFragment}
+Given that the application deal with finding good recipes it makes sense to have a \texttt{Fragment} that keeps track of the users favorite recipes. As such, this is where the user can go to find a list of favorite recipes. The recipes are shown by name and image, providing the option to remove them when long pressing a recipe. A normal press will open the recipe.
 
 \paragraph{DiscoverFragment}
+We recognize that users might not open the application for specific recommendations. This is where the \texttt{DiscoverFragment} comes into the picture. This \texttt{Fragment} is designed to be a recipe browser with a search feature. This helps when wanting something too specific for the recommender - for example recipes with chicken and bacon. Alternatively all recipes should be browsable by \todo{Hvad? Alfabetisk?}
 
 \paragraph{SettingsFragment}
+The last \texttt{Fragment} is for management on the application level. From here, the user can log out, which is not done upon closing the application. This enables the user to log in with another account if desired. One will also find preferences affecting both recommendations and recipes, such as the desired radius in which the application looks for prices on ingredients.
 
 \paragraph{RecommendationActivity}
 
