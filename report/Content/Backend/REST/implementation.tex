@@ -7,11 +7,14 @@ WCF is a framework made for building service-oriented applications. WCF offers a
 % https://msdn.microsoft.com/en-us/library/ms731082%28v=vs.110%29.aspx
 With \textit{Data Contracts} you create a formal agreement between a service and a client that abstractly describes the data to be exchanged. A \textit{Data Contract} precisely defines what data is serialized and sent to the client. The serialization can be whichever format you desire, but XML and JSON are mainly used. As stated before, we chose to use JSON because we can use libraries to handle this, not only on the backend, but also in the application when the client has to deserialize the data.
 
+There are three major steps you need to complete to implement a RESTful Web Service. The steps will be elaborated on below the listing:
+\begin{itemize}
+\item Define URI to host on
+\item Create an instance of the WebServiceHost class and a class which implements your desired service interface. This class needs to define a ServiceBehavior.
+\item Add the desired Service Endpoints, attaching an interface, binding type and the uri on which you want to host the specific interface.
+\end{itemize}
 
-
-- Define URL to host on
-- Create a WebServiceHost with a ServiceBehavior
-- Add Service Endpoints (Interface, Binding, url)
+We define a URI with the C\# class called \texttt{URI}, which 
 
 - interface, 
 - WebHttpBinding, exposing a web service through HTTP requests. each service much be set up with WebGetAttribute and WebInvokeAttribute, to get and post data.
