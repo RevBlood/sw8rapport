@@ -58,7 +58,7 @@ To clarify the entire process of communicating with the server, consider \ref{ls
 Recipes = ServiceHelper.GetFavorisedRecipesByAccountId(AccountId);
 \end{lstlisting}
 
-The process of \texttt{GetFavorisedRecipesByAccountId} can be seen in \ref{fig:servicehelper}. The method provides the specifics on how to create the request properly - an account id is required, and the request should be sent to a specific address (Line 4). Furthermore it is a \texttt{Get} request.
+The process of \texttt{GetFavorisedRecipesByAccountId} can be seen in \ref{lst:servicehelper}. The method provides the specifics on how to create the request properly - an account id is required, and the request should be sent to a specific address (Line 4). Furthermore it is a \texttt{Get} request.
 In this case there is nothing that needs JSON serialization. The server response is however put through the \texttt{JSONHelper} and parsed into a readable format - Namely a list using the model called \texttt{Recipe}. The threading is still not visible because it is done within the \texttt{HTTPHelper}.
 
 \begin{lstlisting}[language=java, label={lst:servicehelper}, caption={GetFavorisedRecipesByAccountId from ServiceHelper}]
