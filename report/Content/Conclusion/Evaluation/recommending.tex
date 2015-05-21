@@ -1,10 +1,12 @@
-\subsection{Recommender System And Preferences}
+\subsection{Recommendation System And Preferences}
 \label{subsec:recommend}
 
+\paragraph{Recommendation System}
 The recommendation system, based on preferences is described in section \ref{sec:searchbypref}. The system has some obvious flaws that can be worked around, however designing a system like this is all about trade-offs. Our system could however be improved without introducing new trade-offs, as per right now the system gives a flat value based on its position in a sorted list (by the specific value). This creates scenarios where the actual value does not matter as much, imagine a recipe for which a retailer has an absurdly cheap offer compared to all the others. This recipe will be given a value of 100, while the next recipe might be substantially more expensive, will be given a value of 99 or even 100 as well. While the system we have created does give a larger rating to the a cheaper offer, it does not give a proper representation of the relationship between values.
 
 A way to solve this could be by implementing a \textbf{standard deviation solution}. It would be possible to give points based on how much a retailers offer differs from the actual average of the entire bunch of offers. This would make a lot more sense as the points given really reflect the value rather than the position of the value in a sorted list. This would, without a doubt, give a better result in terms of recommending more fitting recipes.
 
+\paragraph{Preferences}
 The preferences we have chosen are as mentioned a bit one dimensional, they focus only on money and the money saved. It is obviously a big aspect of the target group we have chosen, but we would have liked to have a more custom-fitted recommendation so other groups could benefit from using the application as well.
 
 We would have liked to have as many preferences as possible and one of these preferences could be checkboxes for ingredients. On the server side, we have implemented the methods for fetching recipes based on ingredients -meaning it is possible to query the database correctly, and simply call the recommendation on the those recipes. It is however not implemented on the client side. Another preference that is supported by the server and database, but not by the client, is the flag `Organic'. 
