@@ -14,7 +14,15 @@ There are three major steps you need to complete to implement a RESTful Web Serv
 \item Add the desired Service Endpoints, attaching an interface, binding type and the uri on which you want to host the specific interface.
 \end{itemize}
 
-We define a URI with the C\# class called \texttt{URI}, which 
+We define a URI with the C\# class called \texttt{URI}, in which you define the path to your web service. We host our web service on the computers WLAN IPv4 address, and define the port to be 8000. There is no major reason for choosing this port number, we just wanted an unused port. In our project the URI looks like this: \texttt{http:// + [localIP] + :8000/RestService}. The RestService tag is just a descriptive subdomain, and it could alternatively be called API or likewise. One issues you have to address before you can host on this URI-path, if you are running it on a windows machine, you need access rights to the URI namespace. If you do not have this in C\#, you will receive an AddressAccessDeniedException, therefore you need to register this URI. You do that by using the network shell, called netsh, and you write the following command: \texttt{netsh http add urlacl url=http://+:8000/ user=DOMAIN\textbackslash UserName"}. The command registers a http address to the specified user, disregarding administrator rights\cite{netshuri}.
+
+A WebServiceHost is instantiated through giving it two parameters, a class containing a service behavior definition, and the created URI on which we host the web service. In our project we named this service behavior class \texttt{RestService}, and it implements all the interfaces we want to expose in our web service. \texttt{RestService} defines two properties, \texttt{InstanceContextMode} and \texttt{AddressFilterMode}. \texttt{InstanceContextMode} is set to \textit{Single}, which means a new \texttt{InstanceContext} object is created on each incoming call, and this object is never reused. \texttt{AddressFilterMode} is set to \textit{Any}, which allows every address to access the web service. If you want to deny any specific address from accessing your services, you can allow only exact addresses through. 
+
+The last thing you have to do before you are done setting up your web service is to add service endpoints. A service endpoint needs three parameters, an interface, a binding-type, and a URI. The interface needs to contain the method definitions of the desired functionality in the web service. The functionality inside these methods will be added in the \texttt{RestService}, which implements the interface. The binding-type in our project is \texttt{WebHttpBinding}, because we want to expose our web service through HTTP requests. Finally, we define a URI on which the specific functionality in the specified interface can be accessed. In our project it looks like this: \texttt{new Uri(uri + "/Account")}, where the uri is the root-URI defined above.
+
+Now, hosting a web service without functionality makes no sense. We have built a total of 11 different interfaces, which each have their on endpoint in our web service. 11 interfaces which in total exposes 46 different HTTP requests. 
+
+
 
 - interface, 
 - WebHttpBinding, exposing a web service through HTTP requests. each service much be set up with WebGetAttribute and WebInvokeAttribute, to get and post data.
