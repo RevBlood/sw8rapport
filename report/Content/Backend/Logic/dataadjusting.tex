@@ -1,0 +1,11 @@
+\subsection{Data Adjustment}
+\label{subsec:dataadjustment}
+
+\paragraph{eTilbudsHandler}
+As mentioned in section \ref{subsec:dataflow}, the data on ingredient offers are extracted from eTilbudsAvis. The data is gathered through JSON communication described in \fixme{set some god damn references to JSON here}. eTilbudsAvis has the developer limited to only fetching 100 objects in one session meaning we have a list of 100 objects coated with JSONserialization. This is deserialized and put into datatypes matching the objects
+
+\fixme{blablabla, once my visual studio starts working i will write more}
+
+Once we have this complete data in models matching perfectly, it might seem trivial to convert it to the data models we initially have for our database. Some calculations needed is calculating the savings both in price and percent, but that is simple mathematics. It does however have a lot of faulty data and null values, as the stores does not always list pre-sale prices. 
+
+\paragraph{Matching offers to Ingredients}
