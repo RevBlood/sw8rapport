@@ -20,12 +20,24 @@ A WebServiceHost is instantiated through giving it two parameters, a class conta
 
 The last thing you have to do before you are done setting up your web service is to add service endpoints. A service endpoint needs three parameters, an interface, a binding-type, and a URI. The interface needs to contain the method definitions of the desired functionality in the web service. The functionality inside these methods will be added in the \texttt{RestService}, which implements the interface. The binding-type in our project is \texttt{WebHttpBinding}, because we want to expose our web service through HTTP requests. Finally, we define a URI on which the specific functionality in the specified interface can be accessed. In our project it looks like this: \texttt{new Uri(uri + "/Account")}, where the uri is the root-URI defined above.
 
-Now, hosting a web service without functionality makes no sense. We have built a total of 11 different interfaces, which each have their on endpoint in our web service. 11 interfaces which in total exposes 46 different HTTP requests. 
+Now, hosting a web service without functionality makes no sense. We have built a total of 11 different interfaces, which each have their own endpoint in our web service. 11 interfaces which in total exposes 46 different HTTP requests. 
 
+Functionality is added to the web service by defining the interface as a \texttt{ServiceContract}. Inside the \texttt{ServiceContract} each method is defined as an \texttt{OperationContract}, and it is these that the client may access. The \texttt{ServiceContract} in combination with the \texttt{WebHttpBinding} exposes the \texttt{OperationContract's} to the client through HTTP requests. An example can be seen at listing \ref{lst:servicecontract}.
 
+\begin{lstlisting}[language=c++, label={lst:servicecontract}, caption=Definition of a ServiceContract]
+[ServiceContract]
+public interface IAccount {
+   [OperationContract]
+   void AddAccount(Account acc);
+}
+\end{lstlisting}
 
-- interface, 
-- WebHttpBinding, exposing a web service through HTTP requests. each service much be set up with WebGetAttribute and WebInvokeAttribute, to get and post data.
-- The url to host the specific interface on
+Additionally, since the interface now contains methods, the \texttt{RestService} class must implement the interfaces, if not it will result in thrown exceptions. This means that the \texttt{RestService} class must implement a method corresponding to the definition made in the interface, for all 46 methods, but this alone does not expose functionality to the user. You need to use the \texttt{WebInvoke} class, still from the C\# \texttt{System.ServiceModel.Web}, and you need to define a HTTP method, URI template, a request format and a response format. We work primarily with three HTTP methods in our project, GET, POST, and DELETE. The URI template has to be a describing name corresponding to the functionality beneath. Finally, the message formats decided for this project is JSON. This is elaborated upon in the RESTful design, see section \ref{subsec:restDes}. An example showing \texttt{WebInvoke} can be seen at listing 
 
-Write here man
+\begin{lstlisting}[language=c++, label={lst:webinvoke}, caption=Definition of a WebInvoke]
+[WebInvoke(Method = "POST", UriTemplate = "AddRecipe", 
+ RequestFormat = WebMessageFormat.Json, 
+ ResponseFormat = WebMessageFormat.Json)]
+\end{lstlisting}
+
+\texttt{WebInvoke} ensures that a method can be invoked, and that it can be called and used through the WCF REST programming model. This completes the implementation of our RESTful web service. This procedure has been repeated continuously for each 46 HTTP request made in the web service.
