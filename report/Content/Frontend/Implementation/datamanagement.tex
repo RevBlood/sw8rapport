@@ -32,6 +32,9 @@ if (session.contains("alias")) {
 \end{lstlisting}  
 
 \subsubsection{Server}
+The server presents the biggest challenge in terms of data management. The structure used to overcome this challenge can be seen in \ref{fig:application_dataflow}. The application has to match models that are recognized by the server, in order for the communication to make sense. The responsibility of using these models are placed on the \texttt{Activity}.
+
+The \texttt{ServiceHelper} provides an interface to the server. It consists of methods that matches the functionality provided by the server. This is where the facade pattern mentioned in \ref{sec:patterns} becomes practical. For the programmer working on the \texttt{Activity} level, there is no need for knowledge about the server. The \texttt{ServiceHelper} works as a facade, only requiring the \texttt{Activity} programmer to choose the appropriate method and providing any parameters needed. This could for example be one of the models.
 
 \begin{figure}[H]
 	\centering
@@ -39,3 +42,38 @@ if (session.contains("alias")) {
 	\caption{Processing data for server communication}
 	\label{fig:application_dataflow}
 \end{figure}
+
+The \texttt{ServiceHelper} puts together the necessary steps to actually communicate with the server. This involves creating a request the server can recognize, converting it to JSON, and sending it to the correct URL. The first two tasks are however generic and can be formulated outside the context of a specific server request. As such the \texttt{ServiceHelper} has the information on where a request should be sent URL-wise, but uses further helper classes for providing JSON serialization/deserialization (\texttt{JSONHelper})and creating HTTP requests(\texttt{HTTPHelper}).
+
+The \texttt{HttpHelper} puts together the HTTP request (address, content, request type is passed from the \texttt{ServiceHelper}) and sends it to the server. If all goes well, the server sends back a response. This response is then treated with the reverse process. It is deserialized from JSON into a usable format (simple types or one of the models), and returned to the \texttt{Activity} via the \texttt{ServiceHelper}.
+
+The total running time of a process such as this can vary depending on the computations required from the server request and the network delay. Furthermore there is always the risk of dropping out on a mobile device, failing the network connection. For this reason, networking is done on a separate thread. This ensures that the UI will not hang, with the worst case scenario of Android telling the user the application is not responding. In fact, any attempt to do networking on an applications main thread will cause Android to throw an exception by default (for Android 3.0 and above)\cite{networking_mainthread}.
+
+In practice the multi-threading is done using Android's \texttt{AsyncTask} class. This enables the use of asynchronous threading. In effect, the thread that creates an \texttt{AsyncTask} can continue unhindered, collecting the result of the task when convenient\cite{asynctask}.
+
+
+To clarify the entire process of communicating with the server, consider \ref{lst:getfavorites}. This example is all the code needed from the \texttt{Activity} perspective. The \texttt{ServiceHelper} is used to get "favorised recipes by account id" and returns a list of recipes when finished.
+
+\begin{lstlisting}[language=java, label={lst:getfavorites}, caption={Sending a server request from an Activity}]
+Recipes = ServiceHelper.GetFavorisedRecipesByAccountId(AccountId);
+\end{lstlisting}
+
+The process of \texttt{GetFavorisedRecipesByAccountId} can be seen in \ref{fig:servicehelper}. The method provides the specifics on how to create the request properly - an account id is required, and the request should be sent to a specific address (Line 4). Furthermore it is a \texttt{Get} request.
+In this case there is nothing that needs JSON serialization. The server response is however put through the \texttt{JSONHelper} and parsed into a readable format - Namely a list using the model called \texttt{Recipe}. The threading is still not visible because it is done within the \texttt{HTTPHelper}.
+
+\begin{lstlisting}[language=java, label={lst:servicehelper}, caption={GetFavorisedRecipesByAccountId from ServiceHelper}]
+public static ArrayList<Recipe> GetFavorisedRecipesByAccountId(int accountId){
+    String response = null;
+    try {
+        response = HTTPHelper.HTTPGet("http://" + ip + ":8000/RestService/Favorises/GetFavorisedRecipesByAccountId?accountId=" + accountId);
+        System.out.println(response);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    ArrayList<Recipe> recipes = JSONHelper.DeserializeList(response, Recipe.class);
+    return recipes;
+}
+\end{lstlisting}
+
+A last thing to note according to \ref{fig:application_dataflow} is the \texttt{DateJsonHelper}. This class is a workaround to deal with inconsistent data types. Both the Java (Frontend) and C\# language (Backend) provides data types for dealing with time and date. Given the availability of this, it would make little sense to implement this functionality from the ground up. The two implementations are however different from each other in that Java is zero-based while C\# is not. An example of where this goes wrong is simply by sending a month from the server to the application. Sending January (1) would be parsed by Java as Feburary, while December would be invalid altogether, as 12 is out of range for Java.
+Rather than manually implement all the functionality needed for date and time, the \texttt{DateJsonHelper} was created to ensure that the formats become compatible with the receiving end, whether it is on deserialization of JSON for the application or serialization for the server.
