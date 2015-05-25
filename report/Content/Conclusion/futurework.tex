@@ -1,6 +1,8 @@
 \section{Future Work}
 \label{sec:future}
 
+While the project as entirety is runnable and somewhat useful, it is also far from being finished. Several features are missing and some existing features need improvements. This section contains our thoughts on what should be be considered in the future, if the project was to be worked upon further.
+
 \subsection{Backend}
 
 \paragraph{Improved recipe data}
@@ -26,15 +28,18 @@ Opskrifer og profilbillede.
 
 \subsection{Frontend}
 
-\paragraph{Inputting new recipes in GUI}
+\paragraph{Inputting new recipes through GUI}
+The functionality to submit new recipes already exists. It is available on the backend, and also set up for use in the application. There is however no way for a user to reach the functionality. This is something that should be designed in the future as a new \texttt{Activity}. User submitted content is a noteworthy feature and was not meant to be left out.
 
 \paragraph{Retouching the visual styles}
-Appen er tør og kedelig
+Given the focus of functionality and user-friendly designs, visual styles was less of a priority. In effect the application is easy to use, but very dull to look at. Before releasing the application, it should be considered to add color themes, graphic effects and proper icons/images. Currently, most elements use default Android colors.
 
 \paragraph{Updating the Discover fragment}
-Der skal noget søgefunktion og noget til.
+It was intended that the \texttt{DiscoverFragment} should be a gateway to browse the database for recipes outside of the recommendation system. This was not done, and should be created. A possible implementation could be alphabetical lookup with the possibility to search free-text or by ingredients or tags.
 
 \subsection{Other}
 
 \paragraph{Researching price data}
-Find flere kilder, eller lav crowdsourcing på brugere.
+One of the harder challenges in this project was finding usable data for ingredients and their availability. The current use of eTilbudsAvisen allows to see offers and their price, while the statistics from \todo{hvorfra?} gives rough ideas on normal prices.
+These data are however still a fraction of all buyable ingredients. As future work it would be a good idea to look into how better information on ingredients could be gathered.
+One idea would be to crowdsource the information, encouraging users of the application to write down, through the application, what they have bought, what it cost, where it is from, and maybe tag the ingredient with relevant tags. This could help reinforce the database greatly.
