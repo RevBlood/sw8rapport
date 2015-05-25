@@ -29,10 +29,13 @@ Opskrifer og profilbillede.
 \subsection{Frontend}
 
 \paragraph{Displaying help for network communication}
+One of the few things that can go wrong in the application is network communication. Unstable networks, unreachable server, or other factors between the smartphone and the server can mean a failure in communication. Currently the application is built around the assumption that a server is always available - as such there is no visual guides for the user, and with the exception of the \texttt{LoginActivity}, there is no indication of loading or errors that occur. Also, requests do not time out, providing no options to retry. Before releasing the application, these things are very important to have.
 
 \paragraph{Paginate recipes and comments}
+There are several reasons that recipes and comments should be paged. Not doing so means the application can run out of memory, trying to display too much data, or in a better scenario just be resource heavy. There is however also a problem at the usability level. It would be very difficult to retain an overview of recipes or comments when the size grows much larger than the height of the screen. 
 
 \paragraph{Handle image scaling properly}
+Profile pictures are currently always scaled identically if above a threshold. This should be updated to be done dynamically according to the dimensions of images. Not doing so can result in failing to import the image (out of memory).
 
 \paragraph{Inputting new recipes through GUI}
 The functionality to submit new recipes already exists. It is available on the backend, and also set up for use in the application. There is however no way for a user to reach the functionality. This is something that should be designed in the future as a new \texttt{Activity}. User submitted content is a noteworthy feature and was not meant to be left out.
