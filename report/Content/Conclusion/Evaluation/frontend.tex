@@ -1,0 +1,34 @@
+\subsection{Frontend}
+\label{subsec:frontend}
+
+\paragraph{Features}
+The application is not finished which means that there are features missing entirely. However, ignoring this aspect for now, the implemented features works almost as well as intended. In fact, comparing the application to the prototype described in \todo{hvor?}, the implementation is very similar.
+
+A few features did not make it to a satisfactory state. One is the feature to choose a profile picture through a gallery application. It was found unreasonable to import a large picture into the application, so if the image is larger than a certain size, it will be resized before loading it into memory. The problem is that the scale of resize is constant. As result, some images might be of better or worse quality than desired. If the case is the latter, the user will see a pixelated image. The first case provides a reliability problem.
+Both problems should be solved with dynamic rescaling. It is possible to know the dimensions of an image before it is loaded into memory. With a proper algorithm, one could make sure that all imported images are scaled to the same size.
+
+When logging into the application, users are met with a spinning loading icon, covering the screen. The intent with this feature was to let users know that their phone is working - in this particular case to communicate with the server. When processing does not seem instant, it is generally a good idea to display for the user that something is happening.
+The feature was however only implemented on the \texttt{LoginActivty} because of time contstraints, but should be used generally, when the application does network operations and can not continue until done.
+
+The \texttt{PagerActivity} had a navigation bar, displaying an icon for each screen, and highlighting the current tab with a blue color. This feature is not working as intended because of how highlighting is done. The icons themselves are altered, and this causes a problem when they are used elsewhere. As such, icons can appear blue when they should not. The navigation bar is a good feature to have, but should be refactored and reworked, as it can currently cause graphical bugs for other components using the same icons.
+
+\paragraph{Reliability}
+At the point of handing in the application, there are three reliability issues for the application. All of them are solvable, but could not be done in time.
+
+The first is related to importing pictures into the application, and happens under the circumstances that an image is larger than expected. Android does not assign infinite memory to a running application (see \citep{android_memory}), and as such, importing a large picture into memory is likely to cause an \texttt{OutOfMemoryError}. The result is that Android will cancel the import, and the \texttt{View} where the image should be will be blank.
+
+The other issue has to do with network communication, and the problem is quite trivial. There is no defined timeout, and as such the application will keep waiting for the server to respond, even if the server never answers. In effect, the application will never move on, and the user will be forced to manually kill the application and relaunch it. Network communication can never be guaranteed, and a general good idea would be to add some error handling for network communication, so the application does not end in an invalid state when it fails. A simple solution would be to cancel the action, returning the user to the point of origin, and displaying for the user what went wrong.
+In the current state, this issue can result in loss of data, depending on what the user was using network communication for.
+
+The last potential reliability issue has to do with list content, namely for favorite recipes and recipe comments. In theory these lists could grow too large to have in memory, although it is unlikely to happen. It would however be a good idea to paginate these lists, both to cause less stress on memory and to solve the potential error of running out of memory.
+
+While reliability issues are extremely bad for an application, we find that the presented issues are acceptable at this point in development - not because they should be there, but because they are the result of an unfinished application. They are not present because of bad coding, but because of missing code. Fixing the issues simply requires new features, rather than improvement of current code.
+
+\paragraph{Usability}
+Several usability issues exists in the application, mostly due to reliability and feature issues described above. Some are however usability issues exclusively, meaning that while something works theoretically, it might not be the case that a user can make it work.
+
+Some effort went into creating sliding screens this semester, due to the fact that the application had many components to display. This turned out well, but comes with the important notice to always visualize that this is possible. There are several approaches to do this, and we chose tabbed views. When comparing \texttt{RecipeActivity} and \texttt{PagerActivity}, it can be seen that the design is very different. This is the effect of learning while doing. After creating the \texttt{PagerActivity}, it was learned that Android had inbuilt components to create exactly the effect that was made manually in \texttt{PagerActivity}. Furthermore, the tabs in \texttt{RecipeActivity} are easier to recognize as navigation tabs due to the frames they come with per Android default. For the \texttt{PagerActivity} it would however still be optimal to use pictures for the tabs due to the limited screen size.
+
+The sliding screens were also used in context of recipe images. These can be slided to view more images, if any. There are however no visuals to indicate that this is possible. Given that these images do not fill an entire screen, it does however not make sense to create tabs for them. As such the feature works as intended, but has very poor usability.
+
+Except from the sliding screens, the application is built around basic components that are common to both Android and general GUI as well - text fields, buttons and sliders. These should be trivial to use. Long presses are however also used, and can be problematic because they provide no indication of where they are possible. They are used when deleting entries in favorites or changing ones profile picture (A context menu appears). This is generally problematic because the features are invisible. A user might suspect the feature because long presses are used various places in Android, but this should not be assumed. Again, lack of visibility means poor usability.
