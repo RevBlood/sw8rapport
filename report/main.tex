@@ -59,6 +59,18 @@
 
 % Appendix
 \appendix
+\begingroup
+\makeatletter
+\let\ps@plain\ps@empty
+\appendixpage
+\makeatother
+\endgroup
+\addappheadtotoc
+\chapter{SQL Query To Create Database}
+The SQL query is displayed on the following page.
+\includepdf[pages={1-2}]{appendix/dbcreation.pdf}
+
+
 
 \label{LastPage}
 \end{document}
