@@ -1,4 +1,4 @@
-\subsection{Implementation of the Data Management}
+\subsection{Implementation of Data Management}
 \label{subsec:datamanagement}
 
 \fxfatal{hvis der er tid så beskriv HTTPhelper på kode niveau}
@@ -10,8 +10,8 @@ As mentioned in \ref{subsubsec:server}, \texttt{ServiceHelper} provides an easy 
 Recipes = ServiceHelper.GetFavorisedRecipesByAccountId(AccountId);
 \end{lstlisting}
 
-The process of \texttt{GetFavorisedRecipesByAccountId} can be seen in \ref{lst:servicehelper}. The method provides the specifics on how to create the request properly - an account id is required, and the request should be sent to a specific address (Line 4). Furthermore it is a \texttt{Get} request.
-In this case there is nothing that needs JSON serialization. The server response is however put through the \texttt{JSONHelper} and parsed into a readable format - Namely a list using the model called \texttt{Recipe}. The threading is still not visible because it is done within the \texttt{HTTPHelper}.
+The process of \texttt{GetFavorisedRecipesByAccountId} can be seen in \ref{lst:servicehelper}. Most of the work to be done is still abstract, and the method mostly provides the procedure on how to create the request properly - an account id is required, and the request should be sent to a specific address (Line 4). Furthermore it is a \texttt{Get} request.
+In this case there is nothing that needs JSON serialization, as the server only needs an account id to perform this action. The server response is however put through the \texttt{JSONHelper} and parsed into a readable format - Namely a list using the model called \texttt{Recipe}.
 
 \begin{lstlisting}[language=java, label={lst:servicehelper}, caption={GetFavorisedRecipesByAccountId from ServiceHelper}]
 public static ArrayList<Recipe> GetFavorisedRecipesByAccountId(int accountId){
@@ -24,5 +24,23 @@ public static ArrayList<Recipe> GetFavorisedRecipesByAccountId(int accountId){
     }
     ArrayList<Recipe> recipes = JSONHelper.DeserializeList(response, Recipe.class);
     return recipes;
+}
+\end{lstlisting}
+
+The threading mentioned in \ref{subsec:datamanagement} is still not visible because it is done within the \texttt{HTTPHelper}. To continue the example from before, the method \texttt{HTTPGet} is called, which can be seen in \ref{lst:httpget}. Here, the actual threading happens. An instance of \texttt{HTTPGetTask} is created and executed, and whenever finished it is returned. \texttt{executeOnExecutor} ensures that the task will run, even if other \texttt{AsyncTask} instances are running. Not doing so could block the application from continuing, if the \texttt{ServiceHelper} is used from another \texttt{AsyncTask}. This is also known as a deadlock, since the system effectively prevents both threads from executing.
+
+\begin{lstlisting}[language=java, label={lst:httpget}, caption={Starting a thread for HTTPGet}]
+public static String HTTPGet(String url) {
+	HTTPGetTask getTask = new HTTPGetTask();
+   	getTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+    try {
+    	return getTask.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    	return null;
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+        return null;
+    }
 }
 \end{lstlisting}
