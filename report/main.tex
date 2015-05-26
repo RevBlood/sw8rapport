@@ -57,12 +57,18 @@
 \bibliographystyle{chicago}
 \bibliography{Litterature/litteratur}
 
-% Appendix
-\appendix
+
+% Appendices
+\begin{appendices}
+\centering
 \chapter{SQL Query To Create Database}
 \label{appendix:createdatabase}
-The SQL query is displayed on the following page.
 \includepdf[pages={1-2}]{appendix/dbcreation.pdf}
+\centering
+\chapter{Average Ingredient Prices}
+\label{appendix:averageprices}
+\includepdf[pages={1-3}, landscape=true]{appendix/averageprices.pdf}
+\end{appendices}
 
 
 
