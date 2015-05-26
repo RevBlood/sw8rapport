@@ -8,7 +8,7 @@ As stated in the introduction to the backend \ref{chap:backend}, the backend fun
 
 The backend queries the database through a class called \texttt{DBController}. This class is approximately 700 lines of code, containing connecting establishment as well as select/insert/update/delete SQL-queries. \texttt{DBController} contains a total of 55 method, most of which changes the state of the database. An example showing how to add a new \textit{Account} to the Database can be seen in listing \ref{lst:DBAddAccount}. It will described below:
 
-\begin{lstlisting}[language=c++, label={lst:DBAddAccount}, caption=Adding a new Account to the Database]
+\begin{lstlisting}[language=c++, caption=Adding a new Account to the Database, label={lst:DBAddAccount}]
 public int AddAccount(Account accountToInsert) {
 	string sql = "INSERT INTO accounts(email, password, alias, settings, preferences) VALUES (@email, @password, @alias, @settings, @preferences)";
 
@@ -25,9 +25,9 @@ public int AddAccount(Account accountToInsert) {
 
 In this piece of code, we build the SQL-statement that we want to execute on the database. We then make use of \textit{Npgsql} and uses their class called \texttt{NpgsqlCommand}, which takes parameter our SQL-statement, and the connection object initialized when we created an instance of \texttt{DBController}. We proceed to add the values we want to insert into the database, provided by the \texttt{Account} object sent as parameter to the method call. The last thing we do is return the result of a method call to \texttt{NonQuery}. \texttt{NonQuery} executes the desired command on the database, and it is targeted on the second parameter, in this case called \texttt{accounts}. What is returned in this case, is the amount of altered rows in the database, in this case one if the query was successful.
 
-Another great feature about \textit{Npgsql} is their use of \texttt{DataRows}\cite{datarow}. Whenever we query the database with select-statements, it is returned as \texttt{DataRowCollection}, e.g. a collection of objects of type \texttt{DataRow}. This allows for easy creation of C\# objects, because we can make a specific constructor to a model following the same principles. An example is shown below in listing \ref{DBGetAccount}, showing how an object of the class \texttt{Account} is instantiated from a \texttt{DataRow} object:
+Another great feature about \textit{Npgsql} is their use of \texttt{DataRows}\cite{datarow}. Whenever we query the database with select-statements, it is returned as \texttt{DataRowCollection}, e.g. a collection of objects of type \texttt{DataRow}. This allows for easy creation of C\# objects, because we can make a specific constructor to a model following the same principles. An example is shown below in listing \ref{lst:DBGetAccount}, showing how an object of the class \texttt{Account} is instantiated from a \texttt{DataRow} object:
 
-\begin{lstlisting}[language=c++, label={lst:DBGetAccount}, caption=Instantiating a new Account-object from a DataRow-object]
+\begin{lstlisting}[language=c++, caption=Instantiating a new Account-object from a DataRow-object, label={lst:DBGetAccount}]
 public Account(DataRow row) {
 	this.GetOrSetId = row.Field<int>("accountid");
 	this.GetOrSetEmail = row.Field<string>("email");
