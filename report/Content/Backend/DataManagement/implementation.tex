@@ -1,2 +1,18 @@
 \subsection{Implementation of Database}
 \label{subsec:dbImpl}
+In this project we implemented our database through an open source database called \textit{PostgreSQL}\cite{postgreSQL}, version 9.3. We previously worked with this database during a course called \textit{Database System} and in previous semesters as well. Following the database technology follows an administration tool called \textit{pgAdmin}\cite{pgAdmin}, which provides an easy to use GUI-based platform to work with everything from schemas and tables to SQL-queries and data-visibility. 
+
+It was already clear what tables and attributes we needed to implement, this can be seen in the data management design-subsection \ref{subsec:datamanagement}. Due to experience with the initial steps of database design and implementation, we knew that alterations without a doubt would occur. This usually results in remaking the database by changing schemas or alternating the structure of different tables. We wanted to make these alterations as inexpensive as possible. If we would have entered our database design through the administrative tools for \textit{PostgreSQL}, this would have become expensive and time-consuming, however we decided to use another solution. We wrote the SQL commands to create the entire database in a single text-document, allowing the use of a function in \textit{pgAdmin} which executes arbitrary SQL queries on the database. By using this approach, we are able to dump the entire database and restore it to a clean state in seconds. Additionally, we can alter the text-document if we want to make changes to the database and test it on another computer before using it on the functioning database on the backend. The complete text-document for creating the database can be seen in appendix \ref{appendix:createdatabase}. 
+
+
+
+
+
+\ref{appendix:createdatabase}
+
+\cite{postgreSQL}
+\cite{pgAdmin}
+\cite{npgsql}
+
+\cite{datarow}
+1.81.1
