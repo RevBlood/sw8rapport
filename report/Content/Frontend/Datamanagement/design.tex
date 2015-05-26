@@ -22,6 +22,15 @@ To exemplify where this is useful, consider the process of logging in. The user 
 
 Furthermore, this is how the application checks whether a user should login when opening the application. If a file exists due to stored \texttt{SharedPreferences}, then there is no reason to login - the required information is already available. Otherwise the user will have to login which creates a new file with the relevant user data. The process of checking this situation can be seen in \ref{lst:login_check}. The listing shows the attempt to locate a file, matching the name of the value stored in \texttt{R.string.app\_name}. If the file is found, it should contain some information about the user - an example being \texttt{alias} as in the listing, but other checks should work as well. If the instance of \texttt{SharedPreferences} contains the \texttt{alias} variable, the \texttt{LoginActivity} is ended immediately, skipping to the next screen, the \texttt{PagerActivity}.
 
+\begin{lstlisting}[language=java, label={lst:login_check}, caption={Checking whether the user should login}]
+SharedPreferences session = getApplicationContext().getSharedPreferences(getString(R.string.app_name), 0);
+if (session.contains("alias")) {
+Intent intent = new Intent(LoginActivity.this, PagerActivity.class);
+startActivity(intent);
+finish();
+}
+\end{lstlisting}  
+
 \subsubsection{Server}
 \label{subsubsec:server}
 The server presents the biggest challenge in terms of data management. The structure used to overcome this challenge can be seen in \ref{fig:application_dataflow}. The application has to match models that are recognized by the server, in order for the communication to make sense. The responsibility of using these models are placed on the \texttt{Activity}.

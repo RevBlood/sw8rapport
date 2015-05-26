@@ -1,8 +1,6 @@
 \subsection{Implementation of Data Management}
 \label{subsec:datamanagement}
 
-\fxfatal{hvis der er tid så beskriv HTTPhelper på kode niveau}
-
 \paragraph{Server}
 As mentioned in \ref{subsubsec:server}, \texttt{ServiceHelper} provides an easy to use interface for the application. To clarify the entire process of communicating with the server, consider \ref{lst:getfavorites}. This example is all the code needed from the \texttt{Activity} perspective. The \texttt{ServiceHelper} is used to get "favorised recipes by account id" and returns a list of recipes when finished.
 
@@ -11,7 +9,7 @@ Recipes = ServiceHelper.GetFavorisedRecipesByAccountId(AccountId);
 \end{lstlisting}
 
 The process of \texttt{GetFavorisedRecipesByAccountId} can be seen in \ref{lst:servicehelper}. Most of the work to be done is still abstract, and the method mostly provides the procedure on how to create the request properly - an account id is required, and the request should be sent to a specific address (Line 4). Furthermore it is a \texttt{Get} request.
-In this case there is nothing that needs JSON serialization, as the server only needs an account id to perform this action. The server response is however put through the \texttt{JSONHelper} and parsed into a readable format - Namely a list using the model called \texttt{Recipe}.
+In this case there is nothing that needs JSON serialization, as the server only needs an account id to perform this action. The server response is however put through the \texttt{JSONHelper} and parsed into a readable format. The \texttt{JSONHelper} methods are generic and will attempt to deserialize from/serialize to any class provided. For this example it uses the \texttt{response} string, encoded in JSON, and attempts to match it with the \texttt{Recipe} class. It should however be noted that this is done with the help of a third part library (jackson by fasterxml)\cite{jackson}.
 
 \begin{lstlisting}[language=java, label={lst:servicehelper}, caption={GetFavorisedRecipesByAccountId from ServiceHelper}]
 public static ArrayList<Recipe> GetFavorisedRecipesByAccountId(int accountId){
