@@ -1,7 +1,7 @@
 \subsection{Design of the Data Management}
 \label{subsec:designdatamanagement}
 
-A lot of data is involved in the application. This ranges from user information to recipe information and preferences. This provides a challenge on how to manage data, both for the client itself but also in combination with the backend. Android supports that one can extend the \texttt{Application} class, which means that any information stored there, is available in all instances of \texttt{Activity}. But this solution comes with problems, see \citep{application_storage}. Other solutions are however possible, and the following is what was done in this project in order to handle different kinds of data.
+A lot of data is involved in the application, this ranges from user information to recipe information and preferences. This provides a challenge on how to manage data, both for the client itself but also in combination with the backend. Android supports an extension of the \texttt{Application} class, which means that any information stored there, is available in all instances of \texttt{Activity}. But this solution comes with problems, see \citep{application_storage}. Other solutions are however possible and the following is what was done in this project in order to handle different kinds of data.
 
 \subsubsection{Bundles and Intents}
 \label{subsubsec:bundles_and_intents}
@@ -9,9 +9,9 @@ A lot of data is involved in the application. This ranges from user information 
 As can be seen in \ref{sec:patterns}, instances of \texttt{Activity} has their own lifecycle. They are created and they run. At some point they are stopped and finally destroyed. Since an \texttt{Activity} only represents one screen, this chain of events occurs often. The problem, seen from a data perspective, is that everything that was created, calculated, or altered in that Activity dies with it.
 A concrete example could be upon opening a recipe from somewhere within the application. This would create an instance of a \texttt{RecipeActivity}. The \texttt{Activity} from which it was launched is then either destroyed or paused, depending on whether it should be possible to return to it later. The \texttt{RecipeActivity} needs information on the recipe to show, but the two instances of \texttt{Activity} can not communicate as they please.
 
-For a case like this, the solution is to manage the information through \texttt{Intent} or the more specific \texttt{Bundle}. These two features are standard Android classes that allows the creation of a new \texttt{Activity} to be associated with a \texttt{Bundle} and/or \texttt{Intent} containing information\cite{intent}\cite{bundle}. Both classes can hold a variable amount of pre-defined data types such as \texttt{char}, \texttt{string}, \texttt{double} and many more.
+For a case like this, the solution is to manage the information through \texttt{Intent} or the more specific \texttt{Bundle}. These two features are standard Android classes that allows the creation of a new \texttt{Activity} to be associated with a \texttt{Bundle} and/or \texttt{Intent} containing information\cite{intent}\cite{bundle}. Both classes can hold a varying amount of pre-defined data types such as \texttt{char}, \texttt{string}, \texttt{double} and many more.
 
-To return to the example, that does not entirely solve the problem. The predefined data types means that a recipe can not be passed through an \texttt{Intent} or \texttt{Bundle}. This is solved in the application by converting the recipe to JSON, and then passing it as a simple string in JSON-format.
+To return to the example, that does not entirely solve the problem. The predefined data types means that a recipe can not be passed through an \texttt{Intent} or \texttt{Bundle}. This is solved in the application by converting the recipe to JSON, and then passing it as a simple string in JSON-formatted string, and simply deserialized in the intended activity.
 
 \subsubsection{SharedPreferences}
 \label{subsubsec:sharedpreferences}
@@ -31,9 +31,9 @@ finish();
 }
 \end{lstlisting}  
 
-\subsubsection{Backend}
+\subsubsection{Communication with back}
 \label{subsubsec:backend}
-The backend presents the biggest challenge in terms of data management. The structure used to overcome this challenge can be seen in \ref{fig:application_dataflow}. The application has to match models that are recognized by the backend, in order for the communication to make sense. The responsibility of using these models are placed on the \texttt{Activity}.
+The communication and data-matching between the backend and the application presents the biggest challenge in terms of data management. The structure used to overcome this challenge can be seen in \ref{fig:application_dataflow}. The application has to match models that are recognized by the backend, in order for the communication to make sense. The responsibility of using these models are placed on the \texttt{Activity}.
 
 The \texttt{ServiceHelper} provides an interface to the backend. It consists of methods that matches the functionality provided by the backend. This is where the facade pattern mentioned in \ref{sec:patterns} becomes practical. For the programmer working on the \texttt{Activity} level, there is no need for knowledge about the backend. The \texttt{ServiceHelper} works as a facade, only requiring the \texttt{Activity} programmer to choose the appropriate method and providing any parameters needed. This could for example be one of the models.
 

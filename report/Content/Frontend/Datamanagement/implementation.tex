@@ -1,7 +1,7 @@
 \subsection{Implementation of Data Management}
 \label{subsec:datamanagement}
 
-\paragraph{Server}
+\paragraph{Communication with the backend}
 As mentioned in \ref{subsubsec:backend}, \texttt{ServiceHelper} provides an easy to use interface for the application. To clarify the entire process of communicating with the backend, consider \ref{lst:getfavorites}. This example is all the code needed from the \texttt{Activity} perspective. The \texttt{ServiceHelper} is used to get "favorised recipes by account id" and returns a list of recipes when finished.
 
 \begin{lstlisting}[language=java, label={lst:getfavorites}, caption={Sending a backend request from an Activity}]
