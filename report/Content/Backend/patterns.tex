@@ -1,12 +1,12 @@
 \section{Patterns}
 \label{sec:bpatterns}
-Software patterns may provide consistency and structure in your code-project. We are following a small list of patterns during the development of the backend, they are described below:
+Software patterns may provide consistency and structure in the code-project. We are following a small list of patterns during the development of the backend, they are described below:
 
 \paragraph{Data Access Object}
-In the creation of the backend we naturally have to work with data, the data management is further described in section \ref{sec:datamanage}. During the design and implementation, we want to follow the DAO pattern. Following this pattern allows the programmer, who is working on other parts of the backend, to utilize the database functionality without being exposed to the details regarding the database. This ensures a single module handles the communication layer between the database and the rest of the backend.
+Naturally in the creation of the backend we have to work with data, the data management is further described in section \ref{sec:datamanage}. During the design and implementation, we want to follow the DAO pattern. Following this pattern allows the programmer, who is working on other parts of the backend, to utilize the database functionality without being exposed to the details regarding the database. This ensures a single module handles the communication layer between the database and the rest of the backend.
 
 \paragraph{Lazy Initialization}
-It is natural for a programmer to try to preserve resources and atleast consider not misusing them. Lazy initialization attempts to help this preservation by delaying the creation of objects, and calculations as much as possible, most desirable they will only be computed right before they are used.
+It is natural for a programmer to try to preserve resources and at least consider not misusing them. Lazy initialization attempts to help this preservation by delaying the creation of objects, and calculations as much as possible, most desirable they will only be computed right before they are used.
 
 \paragraph{Facade}
 The facade pattern attempts to encapsulate a library or APIs behind a better designed facade. In the case of our backend, we attempt to make a uniform and well-structured facade that allows the client to work with data-storage and heavy computations, without knowing how these work. This enables a smaller training session to use complex technology, compared to a client who has to look behind the facade and know exactly how the data-storage and computations are functioning.
