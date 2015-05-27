@@ -1,13 +1,13 @@
 \subsection{Recommending By Preferences}
 \label{subsec:searchbypref}
 
-One of the biggest features in the project is the functionality of recommending recipes based on preferences. As per right now, the preferences you can adjust is how much focus you put on price and how much you focus you put on savings. These are represented as sliders in the personal tab on the application. The value of the sliders are relative to each other, meaning you if you set the price slider at 10 and the savings on 5, price will count for 2/3' of the maximum preferences. This means that price gets a preference multiplier of 0.66, while savings gets 0.33.
+One of the biggest features in the project is the functionality of recommending recipes based on preferences. As per right now, the preferences you can adjust is how much focus you put on price and how much you focus you put on savings. These are represented as sliders in the personal tab on the application. The value of the sliders are relative to each other, meaning if you set the price slider at 10 and the savings on 5, price will count for 2/3' of the maximum preferences. This means that price gets a preference multiplier of 0.66, while savings gets 0.33.
 
 The method has been split into different sections.
 
 \paragraph{getExtraData} This entire method is used several places in the application. It has the purpose of getting the ExtraData for lists of recipes to display, such as in the favorites and discover fragments in the application. More importantly for the section, it is the first stepping stone in the recommending recipes by preferences.
 
-The initial part of searching through recipes is as mentioned getting stores within a radius set by the user. We created a simple lambda expression built on GeoCoordinates.
+The initial part of searching through recipes is as mentioned getting stores within a radius set by the user. We created a lambda expression built on GeoCoordinates.
 
 \begin{lstlisting}[language=c++]
  public List<Retailer> GetStoresWithinRadius(List<Retailer> retailers, int radius, double latitude, double longitude) {
@@ -24,9 +24,9 @@ After getting the stores, they are crossed with offers to find only the stores w
 
 \paragraph{sortBasedOnPreferences}
 
-The idea is that a recipe is given a value between 1-100 based on the preference relative to the values of the other recipes. Lets say a recipe cheaper that the average for that particular recipe, it is given a higher value, with the cheapest being given 100 points. The preference multiplier we have calculated earlier then gets multiplied with the given points and saved into the rating in ExtraData.
+The idea is that a recipe is given a value between 1-100 based on preferences relative to the values of other recipes in the database. Lets say a recipe cheaper than the average is given a higher value, with the cheapest being given 100 points. These points are then multiplied using the preference multiplier, and saved as the rating in ExtraData.
 
-The first part is getting all the recipes possible from within the area and the ExtraData correlated to it. We want to avoid having the same recipe from 5 different stores in area, so we have to make sure we only get the best suggestion of each recipe based on the preferences. So the initial problem is getting the best suggestion based of the retailers, which is why we created this generic method to rate based on the ExtraData.
+The first part is getting all the recipes possible from within the area and the ExtraData correlated to it. We want to avoid having the same recipe from 5 different stores in area, so we make sure that only the best suggestion for each recipe is shown, based on the preferences. So the initial problem is getting the best suggestion based of the retailers, which is why we created this generic method to rate based on the ExtraData.
 
 \begin{lstlisting} [language=c++]
         private Dictionary<T, ExtraData> RangeEvaluator<T>(Dictionary<T, ExtraData> list, int totalPartitions, int preference) {

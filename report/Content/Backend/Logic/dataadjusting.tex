@@ -2,9 +2,9 @@
 \label{subsec:dataadjustment}
 
 \paragraph{Adapting the data}
-As mentioned in section \ref{subsec:backend_datamanagement}, the data on ingredient offers are extracted from eTilbudsAvis. eTilbudsAvis offers information on \textit{Dealers}, \textit{Stores} and \textit{Offers}, and we have chosen to gather all the data in individual files because of practical reasons, as it does take quite some time to gather all the data.  We have created models that matches the information models on eTilbudsAvis, and these can be seen in \texttt{eTilbudsObjects}.
+As mentioned in section \ref{subsec:backend_datamanagement}, the data on ingredient offers are extracted from eTilbudsavis. eTilbudsavis offers information on \textit{Dealers}, \textit{Stores} and \textit{Offers}, and we have chosen to gather all the data in individual files because of practical reasons, as it takes quite some time to gather all the data. We have created models that matches the information models on eTilbudsavis, and these can be seen in \texttt{eTilbudsObjects}.
 
-Once we have the data in models matching their models, it might seem trivial to convert it to the data models we initially have for our database. Some calculations needed is calculating the savings both in price and percent, but that is simple mathematics. It does however have a lot of faulty data and null values, as the stores does not always list pre-sale prices. This problem is circumvented by the code example below.
+Once we have the data in models matching theirs, it might seem trivial to convert it to the data models we initially had for our database. In order to calculate results properly, some calculations are needed to compute the savings both in price and percent, but that is simple mathematics. The data from \texttt{eTilbudsavis} does however have a lot of faulty data and null values, as the stores does not always list pre-sale prices. This problem is circumvented by the code example below.
 
 \begin{lstlisting} [language=c++]
  //Some items does not have values; directly, or because they can't be calculated: give default value of -1.0
