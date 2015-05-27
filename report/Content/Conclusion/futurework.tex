@@ -1,12 +1,12 @@
 \section{Future Work}
 \label{sec:future}
 
-While the project as entirety is runnable and somewhat useful, it is also far from being finished. Several features are missing and some existing features need improvements. This section contains our thoughts on what should be be considered in the future, if the project was to be worked upon further.
+While the project is entirety is runnable and somewhat useful, it is also far from being finished. Several features are missing and some existing features need improvements. This section contains our thoughts on what should be be considered in the future, if the project was to be worked upon further.
 
 \subsection{Backend}
 
 \paragraph{Improved recipe data} 
-We would have loved to have some data to further describe the recipe and through that improve the recommendation system. Some good examples here could be tags like organic or some more detailed descriptions like calories. Some of the most interesting information for our target group could be preparation time and calorie intake. It does however require some user interaction or some sort of admin checking all the recipes. Optimally we would have liked to have a serious and highly active group of users and, as we will describe later, some sort of standardized way to input recipes. It does require a lot of maintenance and adaptation of the already existing recipes. Ideally we would want as detailed recipe information as possible, because it does give us a more precise and better recommendations.
+We would have loved to have some data to further describe the recipe and through that improve the recommendation system. Some good examples here could be tags like organic or some more detailed descriptions like calories -and these could be used in the recommendation system. Some of the most interesting information for our target group could be preparation time and calorie intake. It does however require some user interaction or some sort of admin checking all the recipes. Optimally we would have liked to have a serious and highly active group of users and, as we will describe later, some sort of standardized way to input recipes. It does require a lot of maintenance and adaptation of the already existing recipes. Ideally we would want as detailed recipe information as possible, because it does give us a more precise and better recommendations.
 
 \paragraph{Better ingredient matching}
 The ingredient matching is very lackluster. It does not currently insert offers, so that they can be used in cooperation with ingredients to calculate the cost of cooking a given recipe. The matching has to be extremely precise to avoid having false-positive matching, which will make the calculation of cost wrong and the user-experience will decrease. 
@@ -52,6 +52,5 @@ It was intended that the \texttt{DiscoverFragment} should be a gateway to browse
 \subsection{Other}
 
 \paragraph{Researching price data}
-One of the harder challenges in this project was finding usable data for ingredients and their availability. The current use of eTilbudsavisen allows to see offers and their price, while the statistics from Statistics Denmark gives rough ideas on normal prices.
-These data are however still a fraction of all buy-able ingredients. As future work it would be a good idea to look into how better information on ingredients could be gathered.
-One idea would be to crowd-source the information, encouraging users of the application to write down, through the application, what they have bought, what it cost, where it is from, and maybe tag the ingredient with relevant tags. This could help reinforce the database greatly.
+One of the harder challenges in this project was finding usable data for ingredients and their availability. The current use of eTilbudsavis allows for us to see offers and their price, while the statistics from Statistics Denmark gives rough ideas on normal prices.
+This data are however still a fraction of all purchasable ingredients. As future work it would be a good idea to look into how better information on ingredients could be gathered. One idea would be to crowd-source the information, encouraging users of the application to write down, through the application, what they have bought, what it cost, where it is from, and maybe tag the ingredient with relevant tags. This could help reinforce the database greatly.
